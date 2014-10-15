@@ -37,5 +37,7 @@
 </div>
 
 <% @quotes.each do |quote| %>
-  <p><%= quote %></p>
+  <p><%= quote.text %></p>
+  <p><%= quote.author %></p>
+  <hr>
 <% end %>
