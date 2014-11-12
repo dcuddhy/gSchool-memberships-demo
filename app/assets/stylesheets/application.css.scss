@@ -13,8 +13,119 @@
  *= require_tree .
  *= require_self
  */
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+
+.full {
+  background-image: url(image-path('background_image.jpg'));
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.gCamp{
+  background-color:#ede3d5;
+}
+
+a:hover{
+  text-decoration:none
+}
+
+.image-responsive {
+  width: 100%;
+}
+
+.image-crop{
+  height:220px;
+  overflow:hidden
+}
+
+h1{
+  margin-bottom: 45px;
+  }
+.sign{
+margin-bottom: 10px
+}
+
+p{
+font-size:20px
+}
+
+.panel-title{
+  h2{
+background:#92C4F0;
+}
+}
+
+footer{
+  text-align:justify;
+  font-size: 20px
+}
+
+blockquote{
+  border-left: 0px;
+}
+
+.panel{
+  height: 150px;
+}
+
+.panel-heading{
+  background-color: #92C4F0 !important;
+}
+
+.panel-default{
+  background-color:#eeeeee !important;
+}
+
+.panel-body{
+  background-color:#eeeeee !important;
+}
+
+.text-about{
+  background-color:#eeeeee;
+  width:700px;
+  height:670px;
+}
+
+.text-faq{
+  background-color:#eeeeee;
+
+}
+
+.text-terms{
+  background-color:#eeeeee;
+}
+
+.table{
+  border-bottom: solid;
+  border-bottom-color:lightgrey;
+  border-bottom-width:thin;
+}
+
+.footer{
+  background-color:#ffffff;
+  height:62px;
+  img {
+    height:30px;
+  }
+}
+
+.navbar {
+    border-radius: 0;
+}
+
+.navbar-brand{
+
+  a {
+    color: #777777;
+  }
+
+}
 
 body {
   padding-top: 80px;

@@ -4,7 +4,25 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+
+    @tasks = Task.where(complete: false).page(params[:page]).per(5)
+    @ref = "incomplete"
+
+    if params[:type] =="all"
+      @tasks = Task.all.page(params[:page]).per(5)
+      @ref = "all"
+
+      # @tasks = Post.order(:created_at)
+        respond_to do |format|
+        format.html
+        format.csv { send_data @tasks.as_csv }
+  end
+
+
+
+# @tasks = Task.order("Description").page(params[:page]).per(5)
+    end
+
   end
 
   # GET /tasks/1
@@ -69,6 +87,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:description)
+      params.require(:task).permit(:description, :complete, :due_date)
     end
 end

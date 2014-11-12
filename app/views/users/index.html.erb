@@ -1,0 +1,32 @@
+<div class= "page-header">
+  <div class= "pull-right">
+    <%= link_to 'Create User', new_user_path, class:"btn btn-primary" %>
+  </div>
+
+  <h1>Users</h1>
+</div>
+
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to ("#{user.first_name} #{user.last_name}"), user_path(user) %> </td>
+        <td><%= mail_to(user.email) %></td>
+        <td>
+          <div class= "pull-right">
+            <%= link_to 'Edit', edit_user_path(user), class:"btn btn-info" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
