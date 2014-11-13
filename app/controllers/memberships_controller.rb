@@ -12,6 +12,15 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def update
+    membership = Membership.where(project_id: params[:project_id])
+    membership.update(allowed_params)
+    if membership.save
+      redirect_to projects_path
+    end
+  end
+
+
   private
 
   def allowed_params

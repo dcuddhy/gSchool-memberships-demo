@@ -16,7 +16,7 @@
   <div class="well">
       <%= form_for [@project, @membership] do |f| %>
         <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, :prompt => "Please select a user" %>
-        <%= f.select :role, [['Member', 0], ['Owner', 1]] %>
+        <%= f.select :role, [['Member', 1], ['Owner', 2]], :include_blank => 'Please select type of member' %>
         <%= f.submit 'Add New Member' %>
       <% end %>
   </div>
@@ -24,9 +24,14 @@
 </div>
 
 <div>
+
     <% @project.users.each do |membs| %>
       <p><%= link_to membs.full_name, user_path(membs) %></p>
-
-
+      <%= membs.role %>
+      <%= form_for membs do |f| %>
+        <%= f.select :role, [['Member', 1], ['Owner', 2]] %>
+        <%= f.submit %>
       <% end %>
+
+    <% end %>
 </div>
