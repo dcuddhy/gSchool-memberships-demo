@@ -1,0 +1,32 @@
+<div class= "page-header">
+
+  <ol class="breadcrumb">
+    <li><a><%= link_to "Projects", projects_path %> </a></li>
+    <li><a><%= link_to @project.name, project_path(@project) %></a></li>
+    <li class= "active">Memberships</li>
+  </ol>
+
+  <div class= "pull-right">
+    <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
+    <%= link_to 'Destroy', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
+
+  <h1><strong><%= @project.name %></strong></h1>
+
+  <div class="well">
+      <%= form_for [@project, @membership] do |f| %>
+        <%= f.collection_select :user_id, User.order(:first_name), :id, :full_name, :prompt => "Please select a user" %>
+        <%= f.select :role, [['Member', 0], ['Owner', 1]] %>
+        <%= f.submit 'Add New Member' %>
+      <% end %>
+  </div>
+
+</div>
+
+<div>
+    <% @project.users.each do |membs| %>
+      <p><%= link_to membs.full_name, user_path(membs) %></p>
+
+
+      <% end %>
+</div>
