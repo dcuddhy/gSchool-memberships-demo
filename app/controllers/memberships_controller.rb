@@ -20,11 +20,9 @@ class MembershipsController < ApplicationController
     end
   end
 
-
   private
 
   def allowed_params
     params.require(:membership).permit(:user_id, :role,).merge(:project_id => params[:project_id])
   end
-
 end
