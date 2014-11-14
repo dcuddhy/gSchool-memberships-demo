@@ -6,18 +6,30 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    membership = Membership.new(allowed_params)
-    if membership.save
+    @membership = Membership.new(allowed_params)
+    if @membership.save
       redirect_to project_memberships_path
+    else
+      @project = Project.find(params[:project_id])
+      render :index
     end
   end
 
   def update
-    membership = Membership.where(project_id: params[:project_id])
-    membership.update(allowed_params)
-    if membership.save
-      redirect_to projects_path
+    @membership = Membership.find(params[:id])
+    @membership.update(allowed_params)
+    if @membership.save
+      redirect_to project_memberships_path
+    else
+      @project = Project.find(params[:project_id])
+      render :index
     end
+  end
+
+  def destroy
+    membership = Membership.find(params[:id])
+    membership.destroy
+    redirect_to project_memberships_path
   end
 
   private
