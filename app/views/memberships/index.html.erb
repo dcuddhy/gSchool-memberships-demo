@@ -1,3 +1,4 @@
+<div>
 <div class= "page-header">
 
   <ol class="breadcrumb">
@@ -5,6 +6,7 @@
     <li><a><%= link_to @project.name, project_path(@project) %></a></li>
     <li class= "active">Memberships</li>
   </ol>
+</div>
 
   <div class= "pull-right">
     <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
@@ -14,7 +16,7 @@
   <h1><strong><%= @project.name %>: Manage Members</strong></h1>
 
   <% if @membership.errors.any? %>
-  <div class= "col-sm-offset-0 col-sm-6 alert alert-danger">
+  <div class= "col-sm-offset-0 col-sm-8 alert alert-danger">
     <h3><%= pluralize(@membership.errors.count, "error") %> prohibited this task from being saved:</h3>
        <ul>
           <% @membership.errors.full_messages.each do |message| %>
@@ -32,7 +34,7 @@
         <%= f.submit 'Add New Member', class: "btn btn-primary" %>
       <% end %>
   </div>
-  </div>
+
   <div class="col col-sm-6">
   <table class="table">
 
