@@ -1,6 +1,6 @@
 <div class= "page-header">
   <div class= "pull-right">
-    <%= link_to 'Tasks', project_memberships_path(@project), class: "btn btn-warning" %>
+    <%= link_to 'Tasks', project_tasks_path(@project), class: "btn btn-success" %>
     <%= link_to 'Members', project_memberships_path(@project), class: "btn btn-warning" %>
     <%= link_to 'Edit', edit_project_path(@project), class: "btn btn-info" %>
     <%= link_to 'Destroy', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
