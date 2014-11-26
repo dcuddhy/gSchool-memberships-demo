@@ -14,11 +14,16 @@ class MembershipsController < ApplicationController
       params.require(:membership).permit(:user_id, :role)
     )
     @membership.project = @project
-    @membership.save
-    redirect_to(
-      project_memberships_path(@project),
-      notice: "#{@membership.user.full_name} was added successfully",
-    )
+
+    if @membership.save
+      redirect_to(
+        project_memberships_path(@project),
+        notice: "#{@membership.user.full_name} was added successfully",
+      )
+    else
+      @memberships = @project.memberships
+      render :index
+    end
   end
 
 end
