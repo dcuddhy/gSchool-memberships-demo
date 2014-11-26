@@ -1,6 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
+
   # GET /tasks
   # GET /tasks.json
   def index
@@ -13,14 +17,14 @@ class TasksController < ApplicationController
       @ref = "all"
 
       # @tasks = Post.order(:created_at)
-        respond_to do |format|
+      respond_to do |format|
         format.html
         format.csv { send_data @tasks.as_csv }
-  end
+      end
 
 
 
-# @tasks = Task.order("Description").page(params[:page]).per(5)
+      # @tasks = Task.order("Description").page(params[:page]).per(5)
     end
 
   end
@@ -46,7 +50,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to [@project, @task], notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -80,13 +84,13 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def task_params
-      params.require(:task).permit(:description, :complete, :due_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def task_params
+    params.require(:task).permit(:description, :complete, :due_date)
+  end
 end
