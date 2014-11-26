@@ -1,0 +1,39 @@
+<%= form_for [@project, @membership] do |f| %>
+
+  <%= f.collection_select :user_id, User.order(:first_name, :last_name), :id, :full_name, {include_blank: true} %>
+
+  <%= f.select :role, ['Member', 'Owner'] %>
+
+  <%= f.submit "Add New Member" %>
+
+<% end %>
+
+<div class="memberships">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          User
+        </th>
+        <th>
+          Role
+        </th>
+        <th>
+
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @memberships.each do |membership| %>
+        <tr>
+          <td>
+            <%= membership.user.full_name %>
+          </td>
+          <td>
+            <%= membership.role %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
